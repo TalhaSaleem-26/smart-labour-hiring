@@ -1,0 +1,9 @@
+/* Select dropdown fix */
+select option {
+  background: #1a1a35;
+  color: #fff;
+}
+
+select:focus {
+  border-color: rgba(124, 58, 237, 0.65) !important;
+}
