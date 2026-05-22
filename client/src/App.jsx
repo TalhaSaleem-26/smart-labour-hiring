@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 import DashboardLayout from "./layouts/DashboardLayout";
 
 // Auth Pages
+import PostJob          from "./pages/employer/PostJob";
+import EmployerJobs     from "./pages/employer/EmployerJobs";
+import WorkerFindJobs   from "./pages/worker/WorkerFindJobs";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import VerifyOtp from "./pages/VerifyOtp";
@@ -14,10 +17,13 @@ import ResetPassword from "./pages/ResetPassword";
 import WorkerRegistration from "./pages/worker/WorkerRegistration";
 import WorkerProfile      from "./pages/worker/WorkerProfile";
 import WorkerSettings     from "./pages/worker/WorkerSettings";
+import EmployerSettings from "./pages/employer/EmployerSettings";
+import EmployerWorkers from "./pages/employer/EmployerWorkers";
 // Dashboard Pages
 import AdminDashboard from "./pages/AdminDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import WorkerDashboard from "./pages/WorkerDashboard";
+import LocationWorkerPage from "./pages/employer/LocationWorkerPage";
 
 // Components
 // import ProtectedRoute  from "./components/ProtectedRoute";
@@ -28,11 +34,14 @@ import { getRolePath } from "./utils/roleNavigate";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminSettings from "./pages/admin/AdminSettings";
+// import WorkerMyApplications from "./pages/worker/WorkerMyApplications";
+import EmployerApplications from "./pages/employer/EmployerApplications";
+// import EmployerApplications from "./pages/employer/EmployerApplications";
 
 export default function App() {
   useCurrentUser();
   const { user, isAuthenticated } = useSelector((s) => s.auth);
-
+  
   return (
     <>
       <Toaster
@@ -119,6 +128,27 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/employer/workers" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <EmployerWorkers />
+  </ProtectedRoute>
+}/>
+
+          <Route path="/employer/post-job" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <PostJob />
+  </ProtectedRoute>
+}/>
+<Route path="/employer/jobs" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <EmployerJobs />
+  </ProtectedRoute>
+}/>
+<Route path="/employer/settings" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <EmployerSettings />
+  </ProtectedRoute>
+}/>
           {/* Worker */}
          {/* ── Worker Routes ── */}
 <Route path="/worker/dashboard" element={
@@ -127,9 +157,27 @@ export default function App() {
   </ProtectedRoute>
 }/>
 
+
+<Route path="/employer/applications/:jobId" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <EmployerApplications />
+  </ProtectedRoute>
+}/>
+
+<Route path="/employer/location-workers" element={
+  <ProtectedRoute allowedRoles={["employer"]}>
+    <LocationWorkerPage />
+  </ProtectedRoute>
+}/>
+
 <Route path="/worker/register" element={
   <ProtectedRoute allowedRoles={["worker"]}>
     <WorkerRegistration />
+  </ProtectedRoute>
+}/>
+<Route path="/worker/jobs" element={
+  <ProtectedRoute allowedRoles={["worker"]}>
+    <WorkerFindJobs />
   </ProtectedRoute>
 }/>
 

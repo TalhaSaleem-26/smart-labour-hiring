@@ -21,6 +21,7 @@ const MENUS = {
     { icon: "📋", label: "My Jobs",     path: "/employer/jobs" },
     { icon: "👷", label: "Workers",     path: "/employer/workers" },
     { icon: "⚙️", label: "Settings",   path: "/employer/settings" },
+    { icon:"📍", label:"Worker by Location", path:"/employer/location-workers" }
   ],
   worker: [
     { icon: "⚡", label: "Dashboard",   path: "/worker/dashboard" },
